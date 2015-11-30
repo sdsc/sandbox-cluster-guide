@@ -7,10 +7,10 @@ then
     exit -1
 fi
 
-nodedir=$1
+nodenum=$1
 
 sudo apt-get install emacs openmpi-bin libopenmpi-dev python-mpi4py -y
-if [ $nodedir -eq 0 ]
+if [ $nodenum -eq 0 ]
 then
     cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
     sudo apt-get install nfs-kernel-server rpcbind isc-dhcp-server -y
@@ -21,7 +21,7 @@ then
     done
 fi
 
-sudo cp -rf $nodedir/* /etc/
+sudo cp -rf pinode-$nodenum/* /etc/
 sudo cp -rf common/* /etc/
 
 
