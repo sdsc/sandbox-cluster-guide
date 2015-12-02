@@ -16,8 +16,8 @@ then
     sudo apt-get install nfs-kernel-server rpcbind isc-dhcp-server -y
     for i in 2 3 4 5
     do
-        sudo mv rc$i.d/S01nfs-kernel-server rc$i.d/S02nfs-kernel-server
-        sudo ln -s init.d/rpcbind rc$i.d/S01rpcbind
+        sudo mv /etc/rc$i.d/S01nfs-kernel-server /etc/rc$i.d/S02nfs-kernel-server
+        sudo ln -s /etc/init.d/rpcbind /etc/rc$i.d/S01rpcbind
     done
 fi
 
