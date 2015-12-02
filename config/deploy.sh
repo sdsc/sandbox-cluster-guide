@@ -9,7 +9,7 @@ fi
 
 nodenum=$1
 
-sudo apt-get install emacs openmpi-bin libopenmpi-dev python-mpi4py -y
+sudo apt-get install emacs openmpi-bin libopenmpi-dev python-mpi4py vim -y
 if [ $nodenum -eq 0 ]
 then
     cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
