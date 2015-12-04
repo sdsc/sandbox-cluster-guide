@@ -10,7 +10,7 @@ Basic Process
  4. Deploy configuration (`./deploy.sh <node number>`)
  5. Reboot
  6. Boot remaining nodes
- 7. On each node, deploy and reboot
+ 7. On each node, deploy (git clone git@github.com:sdsc/sandbox-cluster-guide.git) and reboot
  8. Shutdown DHCP server on `pinode-0` (`service isc-dhcp-server stop; update-rc.d isc-dhcp-server disable`)
 
 Manual Steps
