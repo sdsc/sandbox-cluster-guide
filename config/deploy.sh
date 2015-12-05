@@ -26,3 +26,5 @@ sudo cp -rf common/* /etc/
 
 echo 'export OMPI_MCA_btl_tcp_if_include=eth0' >> ~/.bashrc
 
+sudo sed -i 's/BLANK_TIME=30/BLANK_TIME=0/g' /etc/kbd/config
+sudo sed -i 's/POWERDOWN_TIME=30/POWERDOWN_TIME=0/g' /etc/kbd/config
