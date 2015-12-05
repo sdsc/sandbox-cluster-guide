@@ -51,6 +51,7 @@ halfWidth = w/2
 halfHeight = h/2
 size=(halfWidth, halfHeight)
 
+os.environ['DISPLAY'] = ':0.0'
 # set window position based on rank
 # Rect selects image segment origin and size
 if comm.rank == 0:
