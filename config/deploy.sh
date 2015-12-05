@@ -24,4 +24,5 @@ fi
 sudo cp -rf pinode-$nodenum/* /etc/
 sudo cp -rf common/* /etc/
 
+echo 'export OMPI_MCA_btl_tcp_if_include=eth0' >> ~/.bashrc
 
