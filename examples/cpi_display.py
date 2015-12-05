@@ -20,6 +20,7 @@ rank = comm.Get_rank()
 w = int(800./size)
 h = 800
 window_size = (w, h)
+os.environ['DISPLAY'] = ':0.0'
 os.environ['SDL_VIDEO_WINDOW_POS'] = str(rank*(w+10)+40) + ",40"
 pygame.display.init()
 screen = pygame.display.set_mode((window_size), pygame.NOFRAME)
