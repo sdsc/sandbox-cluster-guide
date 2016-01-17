@@ -1,5 +1,8 @@
 #!/bin/bash
 
+sudo apt-get update
+sudo apt-get upgrade
+
 if [ $# -eq 0 ]
 then
     echo "Must supply node number."
