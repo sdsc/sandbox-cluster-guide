@@ -34,7 +34,7 @@ Once the tool has been downloaded, unzip the folder and the tool will be ready t
 
 ## The Process:
 
-#### pinode-0 (Master node):
+### pinode-0 (Master node):
 1. Boot master node (pinode-0) with WiFi dongle, an HDMI cable,  an ethernet cable, keyboard and mouse plugged in.
    1. Change the password of the master node
        1. Type passwd into the terminal
@@ -70,10 +70,10 @@ Once the tool has been downloaded, unzip the folder and the tool will be ready t
 8. Restore the iptables rule-set
    1. Type `sudo iptables-restore < /etc/network/iptables` into the terminal. After this command is completed, it should return to a new line.
  
-#### All other nodes:
+### All other nodes:
 
-The following instructions will be repeated for the remaining raspberry pi nodes. 
-Note: All of the following commands will still be run from pinode-0, or the master node. There is no need to unplug and plug the keyboard and mouse into each new node.
+**_The following instructions will be repeated for the remaining raspberry pi nodes. Note: All of the following commands will still be run from pinode-0, or the master node. There is no need to unplug and plug the keyboard and mouse into each new node._**
+
 Boot another raspberry pi with an ethernet cable plugged in. Give it a minute or two before continuing with the instructions.
 Check what the IP address of the new node is
 Since the master node is running a DCHP server, you can check the IP address that the server assigned to the new node. Type arp -a into the terminal. Look for the address that has a mac address and has not previously been used by another node.
