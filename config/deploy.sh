@@ -1,7 +1,6 @@
 #!/bin/bash
 
 sudo apt-get update -y
-sudo apt-get upgrade -y
 
 if [ $# -eq 0 ]
 then
