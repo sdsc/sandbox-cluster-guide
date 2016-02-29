@@ -43,8 +43,8 @@ def collide(p1, p2):
 
 class Environment:
   def __init__(self, (width, height)):
-    self.width = width
-    self.height = height
+    self.width = width*2
+    self.height = height*2
     self.particles = []
   
     self.colour = (255,255,255)
