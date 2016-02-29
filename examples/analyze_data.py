@@ -20,7 +20,7 @@ linesCycle = cycle(lines)
 markers = ['+','.','o','*','p','s','x','D','h','^']
 markersCycle = cycle(markers)
 
-for d in csv.DictReader(open('/home/hungmaau2/sandbox-cluster-guide/examples/sleepstudy.csv'), delimiter=','):
+for d in csv.DictReader(open('./sleepstudy.csv'), delimiter=','):
 	#print d['Reaction']
 	reaction.append(float(d['Reaction']))
 	days.append(int(d['Days']))
@@ -51,7 +51,6 @@ for day in days:
 		set_days.append(day)
 
 hashmap = []
-selected_day = days[0]
 compiled_reaction_by_day = []
 for day_t in set_days:
 	selected_day = day_t
@@ -61,18 +60,29 @@ for day_t in set_days:
 		if day == selected_day:
 			temp_list.append(reaction[i])
 		i+=1
-			
-	
 	compiled_reaction_by_day.append(temp_list)
-#compiled_reaction_by_day.append(temp_list)
 
-#print compiled_reaction_by_day[0]
-
-reaction_sum_list = []
+reaction_average_list = []
 for n in compiled_reaction_by_day:
-	reaction_sum_list.append(sum(n)/len(n))
+	reaction_average_list.append(sum(n)/len(n))
 
-print reaction_sum_list		
+#print reaction_average_list	
+
+compiled_reaction_by_subject = []
+for subject_s in subjects:
+	selected_subject = subject_s
+	temp_list = []
+	i = 0
+	for sub in subject:
+		if sub == selected_subject:
+			temp_list.append(reaction[i])
+		i+=1
+	compiled_reaction_by_subject.append(temp_list)
+
+reaction_average_by_subject = []
+for n in compiled_reaction_by_subject:
+	reaction_average_by_subject.append(sum(n)/len(n))
+	
 
 #print compiled_list
 
@@ -96,9 +106,21 @@ if comm.rank == 1:
 	mpl.show()
 
 if comm.rank == 2:
-	mpl.plot(set_days,reaction_sum_list)
+	mpl.plot(set_days,reaction_average_list)
+	for xy in zip(set_days,reaction_average_list):
+		mpl.annotate('(%s, %s)' %xy, xy=xy)
+	mpl.grid()
 	mpl.ylabel('Average reaction times of all subjects')
 	mpl.xlabel('Number of sleep deprived days')
+	mpl.show()
+
+if comm.rank == 3:
+	mpl.plot(subjects,reaction_average_by_subject,'ro')
+	for xy in zip(subjects,reaction_average_by_subject):
+		mpl.annotate('(%s, %s)' %xy, xy=xy)
+	mpl.grid()
+	mpl.ylabel('Average reaction time per subject')
+	mpl.xlabel('Sleep deprived subject number')
 	mpl.show()
 
 
