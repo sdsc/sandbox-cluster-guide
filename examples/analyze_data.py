@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-
+import os
+import sys
 import csv
 import matplotlib.pyplot as mpl
 from itertools import cycle
@@ -86,7 +87,9 @@ for n in compiled_reaction_by_subject:
 
 #print compiled_list
 
+os.environ['DISPLAY'] = ':0.0'
 if comm.rank == 0:
+	os.environ['SDL_VIDEO_WINDOW_POS'] = "100,100"
 	#print set_days
 	#print subjects
 	mpl.figure()
@@ -100,13 +103,15 @@ if comm.rank == 0:
 
 if comm.rank == 1:
 	#plot of reaction time over days
+	os.environ['SDL_VIDEO_WINDOW_POS'] = "100,100"
 	mpl.plot(days,reaction,'ro')
 	mpl.ylabel('Reaction times')
 	mpl.xlabel('Number of sleep deprived days')
 	mpl.show()
 
 if comm.rank == 2:
-	mpl.plot(set_days,reaction_average_list)
+	os.environ['SDL_VIDEO_WINDOW_POS'] = "100,100"
+	mpl.plot(set_days,reaction_average_list,'c^')
 	for xy in zip(set_days,reaction_average_list):
 		mpl.annotate('(%s, %s)' %xy, xy=xy)
 	mpl.grid()
@@ -115,6 +120,7 @@ if comm.rank == 2:
 	mpl.show()
 
 if comm.rank == 3:
+	os.environ['SDL_VIDEO_WINDOW_POS'] = "200,100"
 	mpl.plot(subjects,reaction_average_by_subject,'ro')
 	for xy in zip(subjects,reaction_average_by_subject):
 		mpl.annotate('(%s, %s)' %xy, xy=xy)
