@@ -2,7 +2,7 @@
 layout: post
 title:  "Sandbox Cluster Guide"
 date:   2016-02-25 09:30:00 
-categories:   cluster lessons
+categories: Cluster Lessons
 ---
 ## Materials
 * 4 Raspberry Pi
