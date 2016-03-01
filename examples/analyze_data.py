@@ -1,4 +1,12 @@
 #!/usr/bin/env python
+
+"""
+Takes a data set and each task renders a unique graph
+
+
+Run this using
+$ mpirun -np 4 python ./analyze_data.py
+"""
 import os
 import sys
 import csv
@@ -14,6 +22,8 @@ reaction = []
 days = []
 subject = []
 
+#General arrays of options that can be used when creating
+#graphs such as type of points and lines as well as color
 colors = ['r','b','g','c','m','y','k']
 colorsCycle = cycle(colors)
 lines = ['-','--',':','-.']
