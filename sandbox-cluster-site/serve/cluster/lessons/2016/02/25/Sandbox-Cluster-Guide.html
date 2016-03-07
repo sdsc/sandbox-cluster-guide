@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Sandbox Cluster Guide</title>
+  <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://yourdomain.com/cluster/lessons/2016/02/25/Sandbox-Cluster-Guide.html">
+  <link rel="alternate" type="application/rss+xml" title="Let's Build A Cluster!" href="http://yourdomain.com/feed.xml">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Let's Build A Cluster!</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Sandbox Cluster Guide</h1>
+    <p class="post-meta"><time datetime="2016-02-25T01:30:00-08:00" itemprop="datePublished">Feb 25, 2016</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h2 id="materials">Materials</h2>
+<ul>
+  <li>4 Raspberry Pi</li>
+  <li>4 Micro-USB cable (the cable you would use to charge an Android phone)</li>
+  <li>4 microSD cards with adapters</li>
+  <li>1 HDMI cable</li>
+  <li>4 Ethernet cable</li>
+  <li>1 USB keyboard </li>
+  <li>1 USB Mouse</li>
+  <li>1 4-port ethernet switch</li>
+  <li>1 4-port usb hub</li>
+</ul>
+
+<hr />
+
+<h2 id="basic-process">Basic Process</h2>
+
+<h3 id="installing-operating-system-image">Installing Operating System Image:</h3>
+
+<p>If you bought the microSD cards with the NOOB image installed on it, then you can skip these instructions. These instructions are for if you do not have an operating system installed on your microSD card or if you encounter a problem during any of the following steps and need to restart. A good resource that may help you with majority of the steps can be found at: <a href="https://www.raspberrypi.org/documentation/installation/installing-images/README.md">https://www.raspberrypi.org/documentation/installation/installing-images/README.md</a></p>
+
+<p>For the following instructions, it is created for the image Raspbian Jessie.</p>
+
+<p>Optional helpful software for Mac users: <a href="http://ivanx.com/raspberrypi/">http://ivanx.com/raspberrypi/</a></p>
+
+<p>Once the tool has been downloaded, unzip the folder and the tool will be ready to run. When installing the image onto the SD card, you can utilize this tool which will give you an estimate of the remaining time till the card is completed. It provides step by step aid on what to do throughout the process.</p>
+
+<hr />
+
+<h2 id="the-process">The Process:</h2>
+
+<h3 id="pinode-0-master-node">pinode-0 (Master node):</h3>
+<ol>
+  <li>Boot master node (pinode-0) with WiFi dongle, an HDMI cable,  an ethernet cable, keyboard and mouse plugged in.
+    <ol>
+      <li>Change the password of the master node
+        <ol>
+          <li>Type passwd into the terminal</li>
+          <li>By default, the current password = raspberry </li>
+          <li>Enter the new password twice (write that down just in case)</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>Expanding the raspberry pi file system
+    <ol>
+      <li>Type <code>sudo raspi-config</code> into the terminal</li>
+      <li>Navigate to Expand File System and click <strong>Enter</strong></li>
+      <li>After selecting the expanded file system option, it should return an <strong>OK</strong></li>
+      <li>The System may ask to be rebooted</li>
+    </ol>
+  </li>
+  <li>Set up the keyboard, time configuration, and wifi
+    <ol>
+      <li>Go to Menu -&gt; Preferences -&gt; Raspberry Pi Configuration-&gt; Localisation</li>
+      <li>Set the appropriate Locale, Timezone and the Keyboard and then click <strong>OK</strong></li>
+      <li>Reboot</li>
+      <li>Connect to Wifi - SDSC</li>
+    </ol>
+  </li>
+  <li>Configure wlan0
+    <ol>
+      <li>Use <code>ssh-keygen</code> to generate the RSA key pair
+        <ol>
+          <li>Press <strong>ENTER</strong> for “Enter the file in which to save the key”</li>
+          <li>Press <strong>ENTER</strong> for the “Enter passphrase”
+            <ul>
+              <li><em>it will be empty because we do not want to establish a password</em> </li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>Clone this repo to home directory
+    <ol>
+      <li>Copy the github address to clone that repository from <a href="https://github.com/sdsc/sandbox-cluster-guide">https://github.com/sdsc/sandbox-cluster-guide</a></li>
+      <li>Type <code>git clone https://github.com/sdsc/sandbox-cluster-guide.git</code>  into the terminal.</li>
+      <li>Change into the sandbox-cluster-guide folder:  <code>cd sandbox-cluster-guide</code></li>
+      <li>Changes the branch to the appropriate version: <code>git checkout beta-workshop</code></li>
+      <li>Change into the config folder: <code>cd config</code>
+6.Deploy configuration (./deploy.sh <node number="">)</node></li>
+      <li>Call the deploy script from the config directory. It takes a parameter which is a number that represents which node this is. Use the following command in the terminal:  <code>./deploy.sh 0</code> This command may take a few minutes to finish.
+        <ol>
+          <li>After the script is complete, it is fine if you see “sudo: unable to resolve host raspberrypi” in the output. As long as the script completed, you can continue with the instructions.</li>
+        </ol>
+      </li>
+      <li>Verify that the hostname is set:
+        <ol>
+          <li>Type <code>more/etc/hosts</code> into the terminal.  You should see an ip address similar to <strong>127.0.0.1</strong> on the left side and the name of the node on the right across from the ip address should be pinode-0. Check to make sure that it is set accordingly</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>Reboot</li>
+  <li>Restore the iptables rule-set
+    <ol>
+      <li>Type <code>sudo iptables-restore &lt; /etc/network/iptables</code> into the terminal. After this command is completed, it should return to a new line.</li>
+    </ol>
+  </li>
+</ol>
+
+<h3 id="all-other-nodes">All other nodes:</h3>
+
+<p><strong><em>The following instructions will be repeated for the remaining raspberry pi nodes. Note: All of the following commands will still be run from pinode-0, or the master node. There is no need to unplug and plug the keyboard and mouse into each new node.</em></strong></p>
+
+<ol>
+  <li>Boot another raspberry pi with an ethernet cable plugged in. Give it a minute or two before continuing with the instructions.</li>
+  <li>Check what the IP address of the new node is
+    <ol>
+      <li>Since the master node is running a DCHP server, you can check the IP address that the server assigned to the new node. Type <code>arp -a</code> into the terminal. Look for the address that has a mac address and has not previously been used by another node.
+2.Check that the IP address is accessible from pinode-0 by pinging it.
+        <ol>
+          <li>Type <code>sudo ping -c 4 &lt;ip address&gt;</code> into the terminal.</li>
+          <li>Wait until all 4 packets have been sent. If the address is accessible, it will return with a statement that all packets were sent successfully. If the packets were not sent successfully and were lost, then that is probably not the correct address. Restart step 2.</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>Connecting to the new node
+    <ol>
+      <li>After you have found the correct IP address, type <code>ssh &lt;ip address&gt;</code> into the terminal to connect to it.
+        <ol>
+          <li>Enter <strong>yes</strong> into the prompt about adding the key from this node into memory.</li>
+          <li>You will be prompted for the default password of the node that you are accessing. Enter the default raspberry pi password. <strong>raspberry</strong></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>Expanding the raspberry pi file system
+    <ol>
+      <li>Type <code>sudo raspi-config</code> into the terminal.</li>
+      <li>Navigate to Expand File System and click <strong>ENTER</strong>.</li>
+      <li>After selecting the expand file system option, it should return an <strong>OK</strong>.</li>
+      <li>System may ask to be rebooted.</li>
+    </ol>
+  </li>
+  <li>Clone the github repo to home directory
+    <ol>
+      <li>After the raspberry pi has been rebooted, connect back to the node using <code>ssh &lt;ip address&gt;</code> and using the default raspberry pi password.</li>
+      <li>Copy the github address to clone that repository from <a href="https://github.com/sdsc/sandbox-cluster-guide">https://github.com/sdsc/sandbox-cluster-guide</a></li>
+      <li>Type <code>git clone https://github.com/sdsc/sandbox-cluster-guide.git</code> into the terminal.</li>
+      <li>Change into the sandbox-cluster-guide folder: <code>cd sandbox-cluster-guide</code></li>
+      <li>Changes the branch to the appropriate version: <code>git checkout beta-workshop</code></li>
+      <li>Change into the config folder: <code>cd config</code>  </li>
+    </ol>
+  </li>
+  <li>Deploy configuration (./deploy.sh <node number="">)
+</node>    <ol>
+      <li>Call the deploy script from the config directory. It takes a parameter, #, which is a number that represents which node this is. Use the following command in the terminal:  <code>./deploy.sh #</code> This command may take a few minutes to finish.
+        <ol>
+          <li>After the script is complete, it is fine if you see “<em>sudo: unable to resolve host raspberrypi</em>” in the output. As long as the script completed, you can continue with the instructions.</li>
+        </ol>
+      </li>
+      <li>Verify that the hostname is set:
+        <ol>
+          <li>Type <code>more /etc/hosts</code> into the terminal.  You should see an ip address similar to 172.x.x.x on the left side and the name of the node on the right across from the ip address should be the pinode-# where # is the same as the number that you entered for the deploy script section. Check to make sure that it is set accordingly.</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>Reboot</li>
+  <li>Verify that the node was set up correctly
+    <ol>
+      <li>After the node has been fully rebooted, type <code>ssh pinode-#</code> into the terminal. The “#” should be the same as the number that you entered for the deploy script section. If the node was set up successfully, you should be able to access the node without having the enter any password. 
+        <ul>
+          <li>Note: On the first connect, you might have to enter <code>yes</code> when prompted to adding the key from this node into memory.</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<h3 id="notes">Notes:</h3>
+
+<p>To access the terminal, you can either:
+* Click the Desktop icon on the top menu bar
+* Go through Menu-&gt;Accessories-&gt;Terminal</p>
+
+<p>To check which files are in the current directory: 
+* ls</p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Let's Build A Cluster!</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>Let's Build A Cluster!</li>
+          <li><a href="mailto:your-email@domain.com">your-email@domain.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            Include file 'icon-github.html username=site.github_username' contains invalid characters or sequences
+          </li>
+          
+
+          
+          <li>
+            Include file 'icon-twitter.html username=site.twitter_username' contains invalid characters or sequences
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

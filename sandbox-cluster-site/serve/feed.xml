@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Let's Build A Cluster!</title>
+    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</description>
+    <link>http://yourdomain.com/</link>
+    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>2016-02-29 15:21:45 -0800</pubDate>
+    <lastBuildDate>2016-02-29 15:21:45 -0800</lastBuildDate>
+    <generator>Jekyll v</generator>
+    
+      <item>
+        <title>Sandbox Cluster Guide</title>
+        <description>&lt;h2 id=&quot;materials&quot;&gt;Materials&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;4 Raspberry Pi&lt;/li&gt;
+  &lt;li&gt;4 Micro-USB cable (the cable you would use to charge an Android phone)&lt;/li&gt;
+  &lt;li&gt;4 microSD cards with adapters&lt;/li&gt;
+  &lt;li&gt;1 HDMI cable&lt;/li&gt;
+  &lt;li&gt;4 Ethernet cable&lt;/li&gt;
+  &lt;li&gt;1 USB keyboard &lt;/li&gt;
+  &lt;li&gt;1 USB Mouse&lt;/li&gt;
+  &lt;li&gt;1 4-port ethernet switch&lt;/li&gt;
+  &lt;li&gt;1 4-port usb hub&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;basic-process&quot;&gt;Basic Process&lt;/h2&gt;
+
+&lt;h3 id=&quot;installing-operating-system-image&quot;&gt;Installing Operating System Image:&lt;/h3&gt;
+
+&lt;p&gt;If you bought the microSD cards with the NOOB image installed on it, then you can skip these instructions. These instructions are for if you do not have an operating system installed on your microSD card or if you encounter a problem during any of the following steps and need to restart. A good resource that may help you with majority of the steps can be found at: &lt;a href=&quot;https://www.raspberrypi.org/documentation/installation/installing-images/README.md&quot;&gt;https://www.raspberrypi.org/documentation/installation/installing-images/README.md&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;For the following instructions, it is created for the image Raspbian Jessie.&lt;/p&gt;
+
+&lt;p&gt;Optional helpful software for Mac users: &lt;a href=&quot;http://ivanx.com/raspberrypi/&quot;&gt;http://ivanx.com/raspberrypi/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Once the tool has been downloaded, unzip the folder and the tool will be ready to run. When installing the image onto the SD card, you can utilize this tool which will give you an estimate of the remaining time till the card is completed. It provides step by step aid on what to do throughout the process.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;the-process&quot;&gt;The Process:&lt;/h2&gt;
+
+&lt;h3 id=&quot;pinode-0-master-node&quot;&gt;pinode-0 (Master node):&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;Boot master node (pinode-0) with WiFi dongle, an HDMI cable,  an ethernet cable, keyboard and mouse plugged in.
+    &lt;ol&gt;
+      &lt;li&gt;Change the password of the master node
+        &lt;ol&gt;
+          &lt;li&gt;Type passwd into the terminal&lt;/li&gt;
+          &lt;li&gt;By default, the current password = raspberry &lt;/li&gt;
+          &lt;li&gt;Enter the new password twice (write that down just in case)&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Expanding the raspberry pi file system
+    &lt;ol&gt;
+      &lt;li&gt;Type &lt;code&gt;sudo raspi-config&lt;/code&gt; into the terminal&lt;/li&gt;
+      &lt;li&gt;Navigate to Expand File System and click &lt;strong&gt;Enter&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;After selecting the expanded file system option, it should return an &lt;strong&gt;OK&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;The System may ask to be rebooted&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Set up the keyboard, time configuration, and wifi
+    &lt;ol&gt;
+      &lt;li&gt;Go to Menu -&amp;gt; Preferences -&amp;gt; Raspberry Pi Configuration-&amp;gt; Localisation&lt;/li&gt;
+      &lt;li&gt;Set the appropriate Locale, Timezone and the Keyboard and then click &lt;strong&gt;OK&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;Reboot&lt;/li&gt;
+      &lt;li&gt;Connect to Wifi - SDSC&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Configure wlan0
+    &lt;ol&gt;
+      &lt;li&gt;Use &lt;code&gt;ssh-keygen&lt;/code&gt; to generate the RSA key pair
+        &lt;ol&gt;
+          &lt;li&gt;Press &lt;strong&gt;ENTER&lt;/strong&gt; for “Enter the file in which to save the key”&lt;/li&gt;
+          &lt;li&gt;Press &lt;strong&gt;ENTER&lt;/strong&gt; for the “Enter passphrase”
+            &lt;ul&gt;
+              &lt;li&gt;&lt;em&gt;it will be empty because we do not want to establish a password&lt;/em&gt; &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Clone this repo to home directory
+    &lt;ol&gt;
+      &lt;li&gt;Copy the github address to clone that repository from &lt;a href=&quot;https://github.com/sdsc/sandbox-cluster-guide&quot;&gt;https://github.com/sdsc/sandbox-cluster-guide&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;Type &lt;code&gt;git clone https://github.com/sdsc/sandbox-cluster-guide.git&lt;/code&gt;  into the terminal.&lt;/li&gt;
+      &lt;li&gt;Change into the sandbox-cluster-guide folder:  &lt;code&gt;cd sandbox-cluster-guide&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Changes the branch to the appropriate version: &lt;code&gt;git checkout beta-workshop&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Change into the config folder: &lt;code&gt;cd config&lt;/code&gt;
+6.Deploy configuration (./deploy.sh &lt;node number=&quot;&quot;&gt;)&lt;/node&gt;&lt;/li&gt;
+      &lt;li&gt;Call the deploy script from the config directory. It takes a parameter which is a number that represents which node this is. Use the following command in the terminal:  &lt;code&gt;./deploy.sh 0&lt;/code&gt; This command may take a few minutes to finish.
+        &lt;ol&gt;
+          &lt;li&gt;After the script is complete, it is fine if you see “sudo: unable to resolve host raspberrypi” in the output. As long as the script completed, you can continue with the instructions.&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Verify that the hostname is set:
+        &lt;ol&gt;
+          &lt;li&gt;Type &lt;code&gt;more/etc/hosts&lt;/code&gt; into the terminal.  You should see an ip address similar to &lt;strong&gt;127.0.0.1&lt;/strong&gt; on the left side and the name of the node on the right across from the ip address should be pinode-0. Check to make sure that it is set accordingly&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Reboot&lt;/li&gt;
+  &lt;li&gt;Restore the iptables rule-set
+    &lt;ol&gt;
+      &lt;li&gt;Type &lt;code&gt;sudo iptables-restore &amp;lt; /etc/network/iptables&lt;/code&gt; into the terminal. After this command is completed, it should return to a new line.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;all-other-nodes&quot;&gt;All other nodes:&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;The following instructions will be repeated for the remaining raspberry pi nodes. Note: All of the following commands will still be run from pinode-0, or the master node. There is no need to unplug and plug the keyboard and mouse into each new node.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Boot another raspberry pi with an ethernet cable plugged in. Give it a minute or two before continuing with the instructions.&lt;/li&gt;
+  &lt;li&gt;Check what the IP address of the new node is
+    &lt;ol&gt;
+      &lt;li&gt;Since the master node is running a DCHP server, you can check the IP address that the server assigned to the new node. Type &lt;code&gt;arp -a&lt;/code&gt; into the terminal. Look for the address that has a mac address and has not previously been used by another node.
+2.Check that the IP address is accessible from pinode-0 by pinging it.
+        &lt;ol&gt;
+          &lt;li&gt;Type &lt;code&gt;sudo ping -c 4 &amp;lt;ip address&amp;gt;&lt;/code&gt; into the terminal.&lt;/li&gt;
+          &lt;li&gt;Wait until all 4 packets have been sent. If the address is accessible, it will return with a statement that all packets were sent successfully. If the packets were not sent successfully and were lost, then that is probably not the correct address. Restart step 2.&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Connecting to the new node
+    &lt;ol&gt;
+      &lt;li&gt;After you have found the correct IP address, type &lt;code&gt;ssh &amp;lt;ip address&amp;gt;&lt;/code&gt; into the terminal to connect to it.
+        &lt;ol&gt;
+          &lt;li&gt;Enter &lt;strong&gt;yes&lt;/strong&gt; into the prompt about adding the key from this node into memory.&lt;/li&gt;
+          &lt;li&gt;You will be prompted for the default password of the node that you are accessing. Enter the default raspberry pi password. &lt;strong&gt;raspberry&lt;/strong&gt;&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Expanding the raspberry pi file system
+    &lt;ol&gt;
+      &lt;li&gt;Type &lt;code&gt;sudo raspi-config&lt;/code&gt; into the terminal.&lt;/li&gt;
+      &lt;li&gt;Navigate to Expand File System and click &lt;strong&gt;ENTER&lt;/strong&gt;.&lt;/li&gt;
+      &lt;li&gt;After selecting the expand file system option, it should return an &lt;strong&gt;OK&lt;/strong&gt;.&lt;/li&gt;
+      &lt;li&gt;System may ask to be rebooted.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Clone the github repo to home directory
+    &lt;ol&gt;
+      &lt;li&gt;After the raspberry pi has been rebooted, connect back to the node using &lt;code&gt;ssh &amp;lt;ip address&amp;gt;&lt;/code&gt; and using the default raspberry pi password.&lt;/li&gt;
+      &lt;li&gt;Copy the github address to clone that repository from &lt;a href=&quot;https://github.com/sdsc/sandbox-cluster-guide&quot;&gt;https://github.com/sdsc/sandbox-cluster-guide&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;Type &lt;code&gt;git clone https://github.com/sdsc/sandbox-cluster-guide.git&lt;/code&gt; into the terminal.&lt;/li&gt;
+      &lt;li&gt;Change into the sandbox-cluster-guide folder: &lt;code&gt;cd sandbox-cluster-guide&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Changes the branch to the appropriate version: &lt;code&gt;git checkout beta-workshop&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Change into the config folder: &lt;code&gt;cd config&lt;/code&gt;  &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Deploy configuration (./deploy.sh &lt;node number=&quot;&quot;&gt;)
+&lt;/node&gt;    &lt;ol&gt;
+      &lt;li&gt;Call the deploy script from the config directory. It takes a parameter, #, which is a number that represents which node this is. Use the following command in the terminal:  &lt;code&gt;./deploy.sh #&lt;/code&gt; This command may take a few minutes to finish.
+        &lt;ol&gt;
+          &lt;li&gt;After the script is complete, it is fine if you see “&lt;em&gt;sudo: unable to resolve host raspberrypi&lt;/em&gt;” in the output. As long as the script completed, you can continue with the instructions.&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Verify that the hostname is set:
+        &lt;ol&gt;
+          &lt;li&gt;Type &lt;code&gt;more /etc/hosts&lt;/code&gt; into the terminal.  You should see an ip address similar to 172.x.x.x on the left side and the name of the node on the right across from the ip address should be the pinode-# where # is the same as the number that you entered for the deploy script section. Check to make sure that it is set accordingly.&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Reboot&lt;/li&gt;
+  &lt;li&gt;Verify that the node was set up correctly
+    &lt;ol&gt;
+      &lt;li&gt;After the node has been fully rebooted, type &lt;code&gt;ssh pinode-#&lt;/code&gt; into the terminal. The “#” should be the same as the number that you entered for the deploy script section. If the node was set up successfully, you should be able to access the node without having the enter any password. 
+        &lt;ul&gt;
+          &lt;li&gt;Note: On the first connect, you might have to enter &lt;code&gt;yes&lt;/code&gt; when prompted to adding the key from this node into memory.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;notes&quot;&gt;Notes:&lt;/h3&gt;
+
+&lt;p&gt;To access the terminal, you can either:
+* Click the Desktop icon on the top menu bar
+* Go through Menu-&amp;gt;Accessories-&amp;gt;Terminal&lt;/p&gt;
+
+&lt;p&gt;To check which files are in the current directory: 
+* ls&lt;/p&gt;
+
+</description>
+        <pubDate>2016-02-25 01:30:00 -0800</pubDate>
+        <link>http://yourdomain.com/cluster/lessons/2016/02/25/Sandbox-Cluster-Guide.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/cluster/lessons/2016/02/25/Sandbox-Cluster-Guide.html</guid>
+        
+        
+        <category>cluster</category>
+        
+        <category>lessons</category>
+        
+      </item>
+    
+      <item>
+        <title>Welcome to Jekyll!</title>
+        <description>&lt;p&gt;You’ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;To add new posts, simply add a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;def print_hi(name)
+  puts &amp;quot;Hi, #{name}&amp;quot;
+end
+print_hi('Tom')
+#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>2016-02-24 16:21:35 -0800</pubDate>
+        <link>http://yourdomain.com/jekyll/update/2016/02/24/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/jekyll/update/2016/02/24/welcome-to-jekyll.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+  </channel>
+</rss>
