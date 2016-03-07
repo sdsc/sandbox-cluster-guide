@@ -15,4 +15,4 @@ twitter_username: SDSC_UCSD
 github_username:  SDSC
 
 # Build settings
-markdown: redcarpet
+markdown: kramdown
