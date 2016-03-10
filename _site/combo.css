@@ -578,6 +578,14 @@ html { box-sizing: border-box; }
   
   
   
+  nav .p-intro.md { border-color: #f8f8f8; }
+  #intro.md { background-color: #f8f8f8 !important; color: #111111; }
+  #intro.md a { color: #111111; }
+  #intro.md .sectiondivider { color: #f8f8f8; }
+
+  
+  
+  
   nav .p-intro { border-color: #f8f8f8; }
   #intro { background-color: #f8f8f8 !important; color: #111111; }
   #intro a { color: #111111; }
