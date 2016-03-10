@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SinglePaged - Simple Jekyll template</title>
+	<meta name="keywords" content="SinglePaged, jekyll, template, github, blog, single page">
+	<meta name="description" content="A single-page template for Jekyll based blogs (like what you'd use on github pages!)">
+  <link rel="stylesheet" href="combo.css">
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+</head>
+<body>
+  <div id="main">
+
+    <nav><ul>
+      
+        
+        <li class="p-intro"><a href="#intro">Main</a></li>
+      
+        
+        <li class="p-why"><a href="#why">Materials</a></li>
+      
+        
+        <li class="p-details"><a href="#details">Installing Jessie</a></li>
+      
+        
+        <li class="p-usage"><a href="#usage">Setup Node-O</a></li>
+      
+        
+        <li class="p-updating"><a href="#updating">All Other Nodes</a></li>
+      
+        
+        <li class="p-video"><a href="#video">Notes</a></li>
+      
+    </ul></nav>
+
+
+    
+      
+      <div id="intro" class="section p-intro">
+        
+        <div class="container center">
+          <h2 class="text-purple"><em>The Sandbox Cluster Guide</em></h2>
+
+<p><span class="fa-stack subtlecircle" style="font-size:100px; background:rgba(255,166,0,0.1)">
+  <i class="fa fa-circle fa-stack-2x text-white"></i>
+  <i class="fa fa-book fa-stack-1x text-purple"></i>
+</span></p>
+
+<h1 class="text-purple">How to Build a Cluster using Four Raspberry Pis</h1>
+
+<h3>This tutorial will show you how to build a cluster using Four Raspberry Pis. You can build the cluster using two or more Raspberry Pis; in this tutorial, we will be using four.</h3>
+
+<h3>You can use the links on the top of this webpage to help you navigate the tutorial.</h3>
+
+<h3>So what are you waiting for?! Let’s get started!</h3>
+
+
+        </div>
+      </div>
+    
+      
+      <div id="why" class="section p-why">
+        
+        <div class="subtlecircle sectiondivider faicon">
+          <span class="fa-stack">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-check-square-o fa-stack-1x"></i>
+          </span>
+          <h5 class="icon-title">Materials</h5>
+        </div>
+        
+        <div class="container ">
+          <h1>Materials</h1>
+
+<h2>What You Will Need</h2>
+
+<ul>
+  <li>4 Raspberry Pis</li>
+  <li>4 Micro-USB cable (the cable you would use to charge an Android phone)</li>
+  <li>4 microSD cards with adapters</li>
+  <li>1 HDMI cable</li>
+  <li>4 Ethernet cable</li>
+  <li>1 USB keyboard</li>
+  <li>1 USB Mouse</li>
+  <li>1 4-port ethernet switch</li>
+  <li>1 4-port usb hub</li>
+</ul>
+
+        </div>
+      </div>
+    
+      
+      <div id="details" class="section p-details">
+        
+        <div class="subtlecircle sectiondivider faicon">
+          <span class="fa-stack">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-download fa-stack-1x"></i>
+          </span>
+          <h5 class="icon-title">Installing Jessie</h5>
+        </div>
+        
+        <div class="container ">
+          <h3>Installing Operating System Image:</h3>
+
+<p>If you bought the microSD cards with the NOOB image installed on it, then you can skip these instructions. These instructions are for if you do not have an operating system installed on your microSD card or if you encounter a problem during any of the following steps and need to restart. A good resource that may help you with majority of the steps can be found at: [https://www.raspberrypi.org/documentation/installation/installing-images/README.md]</p>
+
+<p>For the following instructions, it is created for the image Raspbian Jessie.</p>
+
+<p>Optional helpful software for Mac users: [http://ivanx.com/raspberrypi/]</p>
+
+<p>Once the tool has been downloaded, unzip the folder and the tool will be ready to run. When installing the image onto the SD card, you can utilize this tool which will give you an estimate of the remaining time till the card is completed. It provides step by step aid on what to do throughout the process.</p>
+
+        </div>
+      </div>
+    
+      
+      <div id="usage" class="section p-usage">
+        
+        <div class="subtlecircle sectiondivider faicon">
+          <span class="fa-stack">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-cube fa-stack-1x"></i>
+          </span>
+          <h5 class="icon-title">Setup Node-O</h5>
+        </div>
+        
+        <div class="container ">
+          <h2>The Process:</h2>
+
+<h3>Setup pinode-0 (Master node):</h3>
+<ol>
+  <li>Boot master node (pinode-0) with WiFi dongle, an HDMI cable,  an ethernet cable, keyboard and mouse plugged in.
+    <ol>
+      <li>Change the password of the master node
+        <ol>
+          <li>Type passwd into the terminal</li>
+          <li>By default, the current password = raspberry</li>
+          <li>Enter the new password twice (write that down just in case)</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>Expanding the raspberry pi file system
+    <ol>
+      <li>Type <code>sudo raspi-config</code> into the terminal</li>
+      <li>Navigate to Expand File System and click <strong>Enter</strong></li>
+      <li>After selecting the expanded file system option, it should return an <strong>OK</strong></li>
+      <li>The System may ask to be rebooted</li>
+    </ol>
+  </li>
+  <li>Set up the keyboard, time configuration, and wifi
+    <ol>
+      <li>Go to Menu -&gt; Preferences -&gt; Raspberry Pi Configuration-&gt; Localisation</li>
+      <li>Set the appropriate Locale, Timezone and the Keyboard and then click <strong>OK</strong></li>
+      <li>Reboot</li>
+      <li>Connect to Wifi - SDSC</li>
+    </ol>
+  </li>
+  <li>Configure wlan0
+    <ol>
+      <li>Use <code>ssh-keygen</code> to generate the RSA key pair
+        <ol>
+          <li>Press <strong>ENTER</strong> for “Enter the file in which to save the key”</li>
+          <li>Press <strong>ENTER</strong> for the “Enter passphrase”
+            <ul>
+              <li><em>it will be empty because we do not want to establish a password</em></li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>Clone this repo to home directory
+    <ol>
+      <li>Copy the github address to clone that repository from <a href="https://github.com/sdsc/sandbox-cluster-guide">https://github.com/sdsc/sandbox-cluster-guide</a></li>
+      <li>Type <code>git clone https://github.com/sdsc/sandbox-cluster-guide.git</code>  into the terminal.</li>
+      <li>Change into the sandbox-cluster-guide folder:  <code>cd sandbox-cluster-guide</code></li>
+      <li>Changes the branch to the appropriate version: <code>git checkout beta-workshop</code></li>
+      <li>Change into the config folder: <code>cd config</code>
+6.Deploy configuration (./deploy.sh <node number="">)</node></li>
+      <li>Call the deploy script from the config directory. It takes a parameter which is a number that represents which node this is. Use the following command in the terminal:  <code>./deploy.sh 0</code> This command may take a few minutes to finish.
+        <ol>
+          <li>After the script is complete, it is fine if you see “sudo: unable to resolve host raspberrypi” in the output. As long as the script completed, you can continue with the instructions.</li>
+        </ol>
+      </li>
+      <li>Verify that the hostname is set:
+        <ol>
+          <li>Type <code>more/etc/hosts</code> into the terminal.  You should see an ip address similar to <strong>127.0.0.1</strong> on the left side and the name of the node on the right across from the ip address should be pinode-0. Check to make sure that it is set accordingly</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>Reboot</li>
+  <li>Restore the iptables rule-set
+    <ol>
+      <li>Type <code>sudo iptables-restore &lt; /etc/network/iptables</code> into the terminal. After this command is completed, it should return to a new line.</li>
+    </ol>
+  </li>
+</ol>
+
+        </div>
+      </div>
+    
+      
+      <div id="updating" class="section p-updating">
+        
+        <div class="subtlecircle sectiondivider faicon">
+          <span class="fa-stack">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-cubes fa-stack-1x"></i>
+          </span>
+          <h5 class="icon-title">All Other Nodes</h5>
+        </div>
+        
+        <div class="container ">
+          <h2>The Process:</h2>
+
+<h3>All other nodes:</h3>
+
+<p class="text-red"><strong><em>The following instructions will be repeated for the remaining raspberry pi nodes. Note: All of the following commands will still be run from pinode-0, or the master node. There is no need to unplug and plug the keyboard and mouse into each new node.</em></strong></p>
+
+<ol>
+  <li>Boot another raspberry pi with an ethernet cable plugged in. Give it a minute or two before continuing with the instructions.</li>
+  <li>Check what the IP address of the new node is
+    <ol>
+      <li>Since the master node is running a DCHP server, you can check the IP address that the server assigned to the new node. Type <code>arp -a</code> into the terminal. Look for the address that has a mac address and has not previously been used by another node.
+2.Check that the IP address is accessible from pinode-0 by pinging it.
+        <ol>
+          <li>Type <code>sudo ping -c 4 &lt;ip address&gt;</code> into the terminal.</li>
+          <li>Wait until all 4 packets have been sent. If the address is accessible, it will return with a statement that all packets were sent successfully. If the packets were not sent successfully and were lost, then that is probably not the correct address. Restart step 2.</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>Connecting to the new node
+    <ol>
+      <li>After you have found the correct IP address, type <code>ssh &lt;ip address&gt;</code> into the terminal to connect to it.
+        <ol>
+          <li>Enter <strong>yes</strong> into the prompt about adding the key from this node into memory.</li>
+          <li>You will be prompted for the default password of the node that you are accessing. Enter the default raspberry pi password. <strong>raspberry</strong></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>Expanding the raspberry pi file system
+    <ol>
+      <li>Type <code>sudo raspi-config</code> into the terminal.</li>
+      <li>Navigate to Expand File System and click <strong>ENTER</strong>.</li>
+      <li>After selecting the expand file system option, it should return an <strong>OK</strong>.</li>
+      <li>System may ask to be rebooted.</li>
+    </ol>
+  </li>
+  <li>Clone the github repo to home directory
+    <ol>
+      <li>After the raspberry pi has been rebooted, connect back to the node using <code>ssh &lt;ip address&gt;</code> and using the default raspberry pi password.</li>
+      <li>Copy the github address to clone that repository from <a href="https://github.com/sdsc/sandbox-cluster-guide">https://github.com/sdsc/sandbox-cluster-guide</a></li>
+      <li>Type <code>git clone https://github.com/sdsc/sandbox-cluster-guide.git</code> into the terminal.</li>
+      <li>Change into the sandbox-cluster-guide folder: <code>cd sandbox-cluster-guide</code></li>
+      <li>Changes the branch to the appropriate version: <code>git checkout beta-workshop</code></li>
+      <li>Change into the config folder: <code>cd config</code></li>
+    </ol>
+  </li>
+  <li>Deploy configuration (./deploy.sh <node number="">)
+</node>    <ol>
+      <li>Call the deploy script from the config directory. It takes a parameter, #, which is a number that represents which node this is. Use the following command in the terminal:  <code>./deploy.sh #</code> This command may take a few minutes to finish.
+        <ol>
+          <li>After the script is complete, it is fine if you see “<em>sudo: unable to resolve host raspberrypi</em>” in the output. As long as the script completed, you can continue with the instructions.</li>
+        </ol>
+      </li>
+      <li>Verify that the hostname is set:
+        <ol>
+          <li>Type <code>more /etc/hosts</code> into the terminal.  You should see an ip address similar to 172.x.x.x on the left side and the name of the node on the right across from the ip address should be the pinode-# where # is the same as the number that you entered for the deploy script section. Check to make sure that it is set accordingly.</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>Reboot</li>
+  <li>Verify that the node was set up correctly
+    <ol>
+      <li>After the node has been fully rebooted, type <code>ssh pinode-#</code> into the terminal. The “#” should be the same as the number that you entered for the deploy script section. If the node was set up successfully, you should be able to access the node without having the enter any password.
+        <ul>
+          <li>Note: On the first connect, you might have to enter <code>yes</code> when prompted to adding the key from this node into memory.</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+
+        </div>
+      </div>
+    
+      
+      <div id="video" class="section p-video">
+        
+        <div class="subtlecircle sectiondivider faicon">
+          <span class="fa-stack">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-code fa-stack-1x"></i>
+          </span>
+          <h5 class="icon-title">Notes</h5>
+        </div>
+        
+        <div class="container ">
+          <h3>Notes to Keep in Mind:</h3>
+
+<p>To access the terminal, you can either:</p>
+
+<ul>
+  <li>Click the Desktop icon on the top menu bar</li>
+  <li>Go through Menu-&gt;Accessories-&gt;Terminal</li>
+</ul>
+
+<p>To check which files are in the current directory:</p>
+
+<ul>
+  <li>ls</li>
+</ul>
+
+        </div>
+      </div>
+    
+
+
+    <div id="footer" class="section text-white">
+      <div class="container">
+        
+        
+<p>Design by Amit Nijjar for Rick Wagner’s Sandbox-Cluster-Guide Project - <a href="http://github.com/sdsc/sandbox-cluster-guide">Github</a></p>
+
+
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-49607422-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="site.js"></script>
+</html>

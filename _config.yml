@@ -1,18 +1,45 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'jekyll serve'. If you change this file, please restart the server process.
+---
 
-# Site settings
-title: Let's Build A Cluster!
-email: rick@ucsd.edu
-description: This tutorial will show you how to build a cluster using Raspberry Pi's!
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://yourdomain.com" # the base hostname & protocol for your site
-twitter_username: SDSC_UCSD
-github_username:  SDSC
+port: 4000
+host: 0.0.0.0
+safe: false
 
-# Build settings
+
+### site serving configuration ###
+exclude: [CNAME, README.md, .gitignore]
+permalink: / ## disables post output
+timezone: null
+lsi: false
 markdown: kramdown
+highlighter: pygments
+
+
+### content configuration ###
+title:       "SinglePaged - Simple Jekyll template"
+keywords:    "SinglePaged, jekyll, template, github, blog, single page"
+description: "A single-page template for Jekyll based blogs (like what you'd use on github pages!)"
+source_link: "https://github.com/t413/SinglePaged"
+favicon:     "img/favicon.ico"
+touch_icon:  "img/apple-touch-icon.png"
+google_analytics_key: UA-49607422-1 ## put YOUR key here to enable tracking! (blank to disable)
+
+
+### template colors, used site-wide via css ###
+colors:
+  black:     '#111111'
+  white:     '#f8f8f8'
+  blue:      '#49a7e9'
+  green:     '#9bcf2f'
+  purple:    '#c869bf'
+  orange:    '#fab125'
+  turquoise: '#0fbfcf'
+  a0:        '#d7996d'
+  a1:        '#44877e'
+  a2:        '#d7af6d'
+  a3:        '#d56c6f'
+  a4:        '#a4c865'
+  a5:        '#358c30'
+
+kramdown:
+  auto_ids:  false
+
