@@ -1,5 +1,7 @@
 # Raspberry Pi Cluster Workshop Agenda
 
+This workshop will show you how to build a cluster using two Raspberry Pis. You can build the cluster using more Raspberry Pis, but we're keeping things simple so that we don't need a network switch.
+
 ![](conversation.png) Items with the conversation image are for presentation and discussions.
 
 ![](hand.png) Items with an image of a hand are hands-on activities.
