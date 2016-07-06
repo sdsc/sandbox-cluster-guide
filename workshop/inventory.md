@@ -15,3 +15,11 @@ What you should have:
 ## Next
 
 [Linux Clusters](clusters.md)
+
+## Previous
+
+[Introduction](intro.md)
+
+## Agenda
+
+[Agenda](agenda.md)
