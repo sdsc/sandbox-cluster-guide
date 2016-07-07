@@ -16,10 +16,9 @@ iface eth0 inet static
   netmask 255.255.254.0
   network 10.0.0.0
   broadcast 10.0.1.255
-  gateway 10.0.0.10
 
 allow-hotplug wlan0
-iface wlan0 inet manual
+iface wlan0 inet dhcp
     wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
 
 allow-hotplug wlan1

@@ -46,7 +46,24 @@ Once the tool has been downloaded, unzip the folder and the tool will be ready t
       1. Press **ENTER** for “Enter the file in which to save the key”
       2. Press **ENTER** for the “Enter passphrase"
           *  _it will be empty because we do not want to establish a password_ 
-1. Clone this repo to home directory
+      ```
+      pi@raspberrypi:~ $ ssh-keygen 
+      Generating public/private rsa key pair.
+      Enter file in which to save the key (/home/pi/.ssh/id_rsa): 
+      Created directory '/home/pi/.ssh'.
+      Enter passphrase (empty for no passphrase): 
+      Enter same passphrase again: 
+      Your identification has been saved in /home/pi/.ssh/id_rsa.
+      Your public key has been saved in /home/pi/.ssh/id_rsa.pub.
+      The key fingerprint is:
+      ...snip...
+      The key's randomart image is:
+      +---[RSA 2048]----+
+      ...snip...
+      +-----------------+
+      pi@raspberrypi:~ $ 
+      ```
+1. Clone the workshop repository to home directory
    1. Copy the github address to clone that repository from [https://github.com/sdsc/sandbox-cluster-guide](https://github.com/sdsc/sandbox-cluster-guide)
    2. Type `git clone https://github.com/sdsc/sandbox-cluster-guide.git`  into the terminal.
    3. Change into the sandbox-cluster-guide folder:  `cd sandbox-cluster-guide`

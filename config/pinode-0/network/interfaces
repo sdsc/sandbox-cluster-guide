@@ -15,11 +15,9 @@ iface eth0 inet static
   broadcast 10.0.1.255
 
 allow-hotplug wlan0
-iface wlan0 inet manual
+iface wlan0 inet dhcp
     wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
 
 allow-hotplug wlan1
 iface wlan1 inet manual
     wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
-
-pre-up iptables-restore < /etc/network/iptables
