@@ -13,42 +13,42 @@ Once the tool has been downloaded, unzip the folder and the tool will be ready t
 ## Setup `pinode-0` (the "Master" Node)
 
 1. Boot the master node (pinode-0) with WiFi dongle, an HDMI cable,  an ethernet cable, keyboard and mouse plugged in.
-2. Open a terminal
+1. Open a terminal
    1. Change the password of the master node
        1. Type passwd into the terminal
        2. By default, the current password = raspberry 
        3. Enter the new password twice (write that down just in case)
-2. Expanding the raspberry pi file system
+1. Expanding the raspberry pi file system
    1. Type `sudo raspi-config` into the terminal
    2. Navigate to Expand File System and click **Enter**
    3. After selecting the expanded file system option, it should return an **OK**
    4. The System may ask to be rebooted
-3. Set up the keyboard, time configuration, and wifi
+1. Set up the keyboard, time configuration, and wifi
    1. Go to Menu -> Preferences -> Raspberry Pi Configuration-> Localisation
    2. Set the appropriate Locale, Timezone and the Keyboard and then click **OK**
    3. Reboot
    4. Connect to WiFi (depends on where you are)
-4. Configure wlan0
+1. Configure wlan0
    1. Use `ssh-keygen` to generate the RSA key pair
       1. Press **ENTER** for “Enter the file in which to save the key”
       2. Press **ENTER** for the “Enter passphrase"
           *  _it will be empty because we do not want to establish a password_ 
-5. Clone this repo to home directory
+1. Clone this repo to home directory
    1. Copy the github address to clone that repository from [https://github.com/sdsc/sandbox-cluster-guide](https://github.com/sdsc/sandbox-cluster-guide)
    2. Type `git clone https://github.com/sdsc/sandbox-cluster-guide.git`  into the terminal.
    3. Change into the sandbox-cluster-guide folder:  `cd sandbox-cluster-guide`
    4. Changes the branch to the appropriate version: `git checkout beta-workshop`
    5. Change into the config folder: `cd config`
-6.Deploy configuration (./deploy.sh <node number>)
+1.Deploy configuration (./deploy.sh <node number>)
    1. Call the deploy script from the config directory. It takes a parameter which is a number that represents which node this is. Use the following command in the terminal:  `./deploy.sh 0` This command may take a few minutes to finish.
       1. After the script is complete, it is fine if you see “sudo: unable to resolve host raspberrypi” in the output. As long as the script completed, you can continue with the instructions.
    2. Verify that the hostname is set:
       1. Type `more/etc/hosts` into the terminal.  You should see an ip address similar to **127.0.0.1** on the left side and the name of the node on the right across from the ip address should be pinode-0. Check to make sure that it is set accordingly
-7. Reboot
-8. Restore the iptables rule-set
+1. Reboot
+1. Restore the iptables rule-set
    1. Type `sudo iptables-restore < /etc/network/iptables` into the terminal. After this command is completed, it should return to a new line.
 
-## The Other Node, pinode-1
+## The Other Node, `pinode-1`
 
 **_The following instructions will be repeated for the remaining raspberry pi nodes. Note: All of the following commands will still be run from pinode-0, or the master node. There is no need to unplug and plug the keyboard and mouse into each new node._**
 
