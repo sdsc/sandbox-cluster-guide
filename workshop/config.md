@@ -12,24 +12,37 @@ Once the tool has been downloaded, unzip the folder and the tool will be ready t
 
 ## Setup `pinode-0` (the "Master" Node)
 
-1. Boot the master node (pinode-0) with WiFi dongle, an HDMI cable,  an ethernet cable, keyboard and mouse plugged in.
+1. Boot the master node (pinode-0) with WiFi dongle (if needed), an HDMI cable, an ethernet cable, keyboard and mouse plugged in. 
 1. Open a terminal
    1. Change the password of the master node
        1. Type passwd into the terminal
-       2. By default, the current password = raspberry 
-       3. Enter the new password twice (write that down just in case)
-1. Expanding the raspberry pi file system
-   1. Type `sudo raspi-config` into the terminal
-   2. Navigate to Expand File System and click **Enter**
-   3. After selecting the expanded file system option, it should return an **OK**
-   4. The System may ask to be rebooted
-1. Set up the keyboard, time configuration, and wifi
+       1. By default, the current password = raspberry 
+       1. Enter the new password twice (write that down just in case)
+       ```
+       pi@raspberrypi:~ $ passwd
+       Changing password for pi.
+       (current) UNIX password:
+       Enter new UNIX password:
+       Retype new UNIX password:
+       pi@raspberrypi:~ $
+       ```
+   1. Expanding the Raspberry Pi file system
+      1. Type `sudo raspi-config` into the terminal
+       ```
+       pi@raspberrypi:~ $ sudo raspi-config
+       ```
+      1. Navigate to Expand File System and click **Enter**
+      1. After selecting the expanded file system option, it should return an **OK**
+      1. The system may ask to be rebooted
+1. Set up the keyboard, time configuration, and WiFi
    1. Go to Menu -> Preferences -> Raspberry Pi Configuration-> Localisation
-   2. Set the appropriate Locale, Timezone and the Keyboard and then click **OK**
-   3. Reboot
-   4. Connect to WiFi (depends on where you are)
-1. Configure wlan0
-   1. Use `ssh-keygen` to generate the RSA key pair
+   1. Set the appropriate Locale (probably changing the Country to "USA"), Timezone (e.g., Area as "US" and Location as "Pacific") and the Keyboard (Country to "United States" and Variant to "English (US)", you may need to scroll up) and then click **OK**
+   1. Reboot when prompted
+   1. Connect to WiFi
+   1. Click on the network icon in the top right of the screen.
+   1. Select or enter the SSID for your wireless connection.
+   1. Enter the SSID password when prompted.
+1. Use `ssh-keygen` to generate the RSA key pair
       1. Press **ENTER** for “Enter the file in which to save the key”
       2. Press **ENTER** for the “Enter passphrase"
           *  _it will be empty because we do not want to establish a password_ 
