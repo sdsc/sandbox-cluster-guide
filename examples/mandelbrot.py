@@ -51,10 +51,10 @@ def go_through_points(startx, starty, finishx, finishy, width, height):
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 
-rows = 1
-columns = 1
-width = 5000    #total width of all screens
-height = 5000   #total height of all screens
+rows = 2
+columns = 2
+width = 500    #total width of all screens
+height = 500   #total height of all screens
 
 #Checks if there are enough windows/screens/processors for given rows and columns(squares)
 if comm.Get_size() != rows*columns:
