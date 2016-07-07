@@ -9,6 +9,18 @@ fi
 
 nodenum=$1
 
+echo "*************************************"
+echo "************* Updating **************"
+echo "*************************************"
+echo
+sudo apt-get update -y
+
+echo
+echo "*************************************"
+echo "******** Installing Packages ********"
+echo "*************************************"
+echo
+
 sudo apt-get install emacs openmpi-bin libopenmpi-dev python-mpi4py vim -y
 if [ $nodenum -eq 0 ]
 then
@@ -20,6 +32,12 @@ then
         sudo ln -s /etc/init.d/rpcbind /etc/rc$i.d/S01rpcbind
     done
 fi
+
+echo
+echo "*************************************"
+echo "****** Deploying Configuration ******"
+echo "*************************************"
+echo
 
 sudo cp -rf pinode-$nodenum/* /etc/
 
