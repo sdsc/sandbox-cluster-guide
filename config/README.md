@@ -12,11 +12,10 @@ Basic Process
  6. Reboot
  7. Boot remaining nodes
  8. On each node, deploy (git clone git@github.com:sdsc/sandbox-cluster-guide.git) and reboot
- 9. Shutdown DHCP server on `pinode-0` (`service isc-dhcp-server stop; update-rc.d isc-dhcp-server disable`)
 
 Manual Steps
 ------------
 
  * Configure wlan0
- * On pinode-0 generate RSA key pair for cluster (`ssh-keygen` with no passphrase)
- * Shutdown DHCP server after other nodes are up
+ * On `pinode-0` generate RSA key pair for cluster (`ssh-keygen` with no passphrase)
+

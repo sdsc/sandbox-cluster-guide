@@ -56,7 +56,7 @@ Time estimate: 15 minutes.
 
 Time estimate: 15 minutes.
 
-## [Running Parallel Programs](parallel.md)
+## [Running Parallel Programs](parallel.md#running-parallel-programs)
 
 ![](hand.png) Let's see if everything works!
 
