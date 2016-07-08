@@ -1,7 +1,10 @@
+#! /usr/bin/env python 
+
 import math
 import time
-import Image
+from PIL import Image
 from mpi4py import MPI
+import pygame
 
 #Gets row and column (starting at 0,0 for top left) for window, based on rank, assuming rank is ordered by left to right, top to bottom.
 def get_rowcolumn(rank, rows, columns):
@@ -9,7 +12,7 @@ def get_rowcolumn(rank, rows, columns):
 	for x in xrange(columns):
 		for y in xrange(rows):
 			if rank == count:
-				return x,y
+				return y, x
 			else:
 				count += 1	
 
@@ -51,10 +54,10 @@ def go_through_points(startx, starty, finishx, finishy, width, height):
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 
-rows = 2
+rows = 1
 columns = 2
-width = 500    #total width of all screens
-height = 500   #total height of all screens
+width = 1600    #total width of all screens
+height = 900   #total height of all screens
 
 #Checks if there are enough windows/screens/processors for given rows and columns(squares)
 if comm.Get_size() != rows*columns:
@@ -76,10 +79,18 @@ for point in list_of_points:
 	except IndexError:
 		im.putpixel((0,0), (255,255,255))
 		print("ERROR:| IndexError | rank: %s | point: %s |"%(rank, str(point)))
-im.show()
-#im.save(str(rank)+"image.png")
-time.sleep(5)	
+#im.show()
+im.save(str(rank)+"image.png")
 
+#Pygame displays saved image
+pygame.display.init()
+img = pygame.image.load(str(rank)+"image.png")
+size = img.get_rect().width,img.get_rect().height
+sscr = pygame.display.set_mode((size), pygame.NOFRAME)
+rect0 = pygame.Rect(startx, starty, width, height)
+sscr.blit(img, (0,0))
+pygame.display.update()
+time.sleep(10)
 
 		
 
