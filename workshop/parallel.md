@@ -1,5 +1,6 @@
 # Parallel Programming
 
+How can make these cores, processors, and computers work together? What examples can I look at?
 
 ## Running Parallel Programs
 
