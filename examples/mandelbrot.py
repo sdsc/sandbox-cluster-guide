@@ -1,5 +1,14 @@
 #! /usr/bin/env python 
 
+"""
+Run this using
+  mpirun -np <tasks> ./mandelbrot.py <rows> <columns>
+where <tasks> = <rows> * <columns>
+and <tasks> is even
+"""
+
+import os
+import sys
 import math
 import time
 from PIL import Image
@@ -50,14 +59,20 @@ def go_through_points(startx, starty, finishx, finishy, width, height):
 				list.append((x,y))
 	return list
 
+start_time = time.time()
+
+os.environ['DISPLAY'] = ':0.0'
 
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 
-rows = 1
-columns = 2
-width = 1600    #total width of all screens
-height = 900   #total height of all screens
+rows = int(sys.argv[1])
+columns = int(sys.argv[2])
+
+pygame.display.init()
+disp_info = pygame.display.Info()
+width = disp_info.current_w*2  #total width of all screens
+height = disp_info.current_h   #total height of all screens
 
 #Checks if there are enough windows/screens/processors for given rows and columns(squares)
 if comm.Get_size() != rows*columns:
@@ -67,6 +82,14 @@ if comm.Get_size() != rows*columns:
 #Main stud
 row , column = get_rowcolumn(rank, rows, columns)
 startx, starty, finishx, finishy = get_points(column, columns, row, rows, width, height)
+
+# assume that tasks are ordered by compute node
+if rank < comm.Get_size()/2:
+        os.environ['SDL_VIDEO_WINDOW_POS'] = str(startx) + "," + str(starty)
+else:
+        os.environ['SDL_VIDEO_WINDOW_POS'] = str(startx - disp_info.current_w) + "," + str(starty)
+
+
 list_of_points = go_through_points(startx, starty, finishx, finishy, width, height)
 
 #create image
@@ -82,8 +105,11 @@ for point in list_of_points:
 #im.show()
 im.save(str(rank)+"image.png")
 
+comm.Barrier()
+if rank == 0:
+        end_time = time.time()
+        print("Total time using %d tasks was %4.2f seconds" % (comm.Get_size(), end_time - start_time))
 #Pygame displays saved image
-pygame.display.init()
 img = pygame.image.load(str(rank)+"image.png")
 size = img.get_rect().width,img.get_rect().height
 sscr = pygame.display.set_mode((size), pygame.NOFRAME)
@@ -91,7 +117,3 @@ rect0 = pygame.Rect(startx, starty, width, height)
 sscr.blit(img, (0,0))
 pygame.display.update()
 time.sleep(10)
-
-		
-
-
