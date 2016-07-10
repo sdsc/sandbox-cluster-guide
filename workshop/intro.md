@@ -21,3 +21,15 @@ There are a ton of great resources for learning about Raspberry Pis for educatio
 * [What is a Raspberry Pi?](https://www.raspberrypi.org/help/what-is-a-raspberry-pi/)
 * [A Teachers' Guide to Using Raspberry Pi in the Classroom](https://www.raspberrypi.org/guides/teachers/)
 * [Getting Started with Raspberry Pi Lesson](https://www.raspberrypi.org/learning/getting-started-with-raspberry-pi-lesson/)
+
+## Next
+
+[Inventory](inventory.md)
+
+## Previous
+
+![](coffee.png) Did you have some coffee?
+
+## Agenda
+
+[Agenda](agenda.md)
