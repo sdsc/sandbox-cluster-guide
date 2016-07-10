@@ -24,3 +24,15 @@ SSH keys
 ## Data
 
 Getting data from one Pi to another
+
+## Next
+
+[Configuration](config.md)
+
+## Previous
+
+[Assembly](assembly.md)
+
+## Agenda
+
+[Agenda](agenda.md)

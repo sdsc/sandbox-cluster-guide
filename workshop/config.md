@@ -23,7 +23,9 @@ to do throughout the process.
 
 ## Setup `pinode-0` (the "Master" Node)
 
-1. Boot the master node (pinode-0) with WiFi dongle (if needed), an HDMI cable, an ethernet cable, keyboard and mouse plugged in. 
+_Hint: `pinode-0` goes to the left hand LCD panel._
+
+1. Boot `pinode-0` with WiFi dongle (if needed), an HDMI cable, an ethernet cable, keyboard and mouse plugged in. 
 1. If your SD cards have NOOBS pre-installed you will be prompted at the
 beginning to install the operating system Raspbian. Just select
 Raspbian and click install.

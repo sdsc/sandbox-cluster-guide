@@ -114,6 +114,8 @@ img = pygame.image.load(str(rank)+"image.png")
 size = img.get_rect().width,img.get_rect().height
 sscr = pygame.display.set_mode((size), pygame.NOFRAME)
 rect0 = pygame.Rect(startx, starty, width, height)
+# add border around each task's window
+pygame.draw.rect(sscr, (255,255,255), (startx, starty, width, height), 10)
 sscr.blit(img, (0,0))
 pygame.display.update()
 time.sleep(10)

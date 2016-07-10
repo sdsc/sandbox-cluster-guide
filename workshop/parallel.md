@@ -2,6 +2,22 @@
 
 How can make these cores, processors, and computers work together? What examples can I look at?
 
+Shared vs. distributed memory.
+
+Many tools for parallel and distributed communications
+
+also threading within a task
+
+https://computing.llnl.gov/tutorials/parallel_comp/
+
+
+https://computing.llnl.gov/tutorials/pthreads/
+
+https://computing.llnl.gov/tutorials/openMP/
+
+https://en.wikibooks.org/wiki/Python_Programming/Threading
+
+Race conditions!
 
 ## Python
 
@@ -17,14 +33,16 @@ http://docs.python-guide.org/en/latest/intro/learning/
 
 https://www.codecademy.com/learn/python
 
-
-
-
 ## mpi4py
+
+
 
 https://bitbucket.org/mpi4py/mpi4py
 
 http://mpi4py.readthedocs.io/en/stable/tutorial.html
+
+https://computing.llnl.gov/tutorials/mpi/
+
 
 ## Pygame 
 
@@ -119,3 +137,28 @@ pi@pinode-0:~/sandbox-cluster-guide/examples $ mpirun -np 8  ./cpi_display.py
 pi@pinode-0:~/sandbox-cluster-guide/examples $ mpirun -np 8 -hostfile two-pis.txt ./cpi_display.py
 pi@pinode-0:~/sandbox-cluster-guide/examples $ mpirun -np 8 -hostfile four-tasks-0011.txt ./cpi_display.py
 ```
+
+### Mandelbrot Scaling
+
+```
+pi@pinode-0:~/sandbox-cluster-guide/examples $ mpirun -np 2 -hostfile two-pis.txt ./mandelbrot.py 1 2
+pi@pinode-0:~/sandbox-cluster-guide/examples $ mpirun -np 2 -hostfile four-tasks-0011.txt ./mandelbrot.py 2 2
+pi@pinode-0:~/sandbox-cluster-guide/examples $ mpirun -np 2 -hostfile six-tasks-000111.txt ./mandelbrot.py 3 2
+pi@pinode-0:~/sandbox-cluster-guide/examples $ mpirun -np 8 -hostfile eight-tasks.txt ./mandelbrot.py 2 4
+pi@pinode-0:~/sandbox-cluster-guide/examples $ mpirun -np 8 -hostfile eight-tasks.txt ./mandelbrot.py 4 2
+```
+
+Look at the CPU meter in the upper right-hand corner while these are
+running and the timing that each run spits out.
+
+## Next
+
+[Hacking Parallel Programs](hacking.md)
+
+## Previous
+
+![](coffee.png) You should have had some coffee.
+
+## Agenda
+
+[Agenda](agenda.md)

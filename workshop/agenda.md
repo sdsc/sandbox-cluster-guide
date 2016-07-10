@@ -68,16 +68,8 @@ Time estimate: 15 minutes.
 
 Time estimate: 10 minutes.
 
-## [Hacking: Hands-On](hacking.md)
+## [Hacking: Hands-On](hacking.md#hacking-hands-on)
 
 ![](hand.png) Modifying the example applications, thinking of new ones.
 
 Time estimate: 15 minutes.
-
-## What next?
-
-- Learn how to [update your SD card](update-sd-card.md)
-- Connect your Raspberry Pi to [WiFi](wifi.md)
-- Install more [applications](install-apps.md)
-- Discover how to [back up your SD card](backup.md)
-- Get started learning or making with our free [resources](https://www.raspberrypi.org/resources/)
