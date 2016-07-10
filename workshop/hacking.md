@@ -13,7 +13,7 @@ Editors, `nano`, `vim`, `emacs`
 
 ## Previous
 
-[Running Parallel Programs](parallel.md#running-parallel-programs)
+[Running Parallel Programs](running.md)
 
 ## Agenda
 

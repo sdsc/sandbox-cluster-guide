@@ -2,6 +2,10 @@
 
 This workshop will show you how to build a cluster using two Raspberry Pis. You can build the cluster using more Raspberry Pis, but we're keeping things simple so that we don't need a network switch.
 
+The repository with all the workshop materials and example
+applications is at:<br>
+https://github.com/sdsc/sandbox-cluster-guide
+
 ![](conversation.png) Items with the conversation image are for presentation and discussions.
 
 ![](hand.png) Items with an image of a hand are hands-on activities.
@@ -56,7 +60,7 @@ Time estimate: 15 minutes.
 
 Time estimate: 15 minutes.
 
-## [Running Parallel Programs](parallel.md#running-parallel-programs)
+## [Running Parallel Programs](running.md)
 
 ![](hand.png) Let's see if everything works!
 
