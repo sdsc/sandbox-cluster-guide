@@ -2,6 +2,36 @@
 
 How can make these cores, processors, and computers work together? What examples can I look at?
 
+
+## Python
+
+https://www.python.org/
+
+https://www.python.org/about/gettingstarted/
+
+https://www.raspberrypi.org/learning/python-intro/
+
+[Python Style Guide](https://github.com/raspberrypilearning/python-style-guide)
+
+http://docs.python-guide.org/en/latest/intro/learning/
+
+https://www.codecademy.com/learn/python
+
+
+
+
+## mpi4py
+
+https://bitbucket.org/mpi4py/mpi4py
+
+http://mpi4py.readthedocs.io/en/stable/tutorial.html
+
+## Pygame 
+
+Many of our examples use [Pygame](http://pygame.org/hifi.html) to
+drive the visual aspects and any game logic. It's simple and great for
+other introductory programming classes or projects.
+
 ## Running Parallel Programs
 
 ```

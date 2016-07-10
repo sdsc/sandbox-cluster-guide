@@ -14,11 +14,12 @@ What you should have:
 
 For previous generations Raspberry Pis you'll need one or two
 [USB WiFi adapters](https://amzn.com/B003MTTJOY). To build a larger
-cluster you'll need a switch to connect the Ethernet interfaces. For a
+cluster you'll need a switch to connect the Ethernet interfaces, some
+more Ethernet cables and LCD panels (one for each Pi). For a
 small cluster (say 4 nodes) I like the
 [NETGEAR ProSAFE FS105NA 5-Port Fast Ethernet Switch (FS105NA)](https://amzn.com/B00002EQCW);
 it's inexpensive (partially because it only goes at 100Mbps which all
-the Raspberry Pis can do) and the metal case stands up to some rough handling.
+Raspberry Pis can do) and the metal case stands up to some rough handling.
 
 ## Next
 

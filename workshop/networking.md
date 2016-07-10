@@ -4,6 +4,9 @@ A bunch of other concepts we need to know. How do computers talk to each other? 
 
 ## Networking
 
+[Raspberry Pi Networking Lessons](https://www.raspberrypi.org/learning/networking-lessons/)
+
+
 Network configuration for our cluster
 
 Private addresses
