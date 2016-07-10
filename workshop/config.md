@@ -79,12 +79,14 @@ Raspbian and click install.
       ```
   1. In a terminal window clone the workshop repository to home directory.
      1. Copy the GitHub address to clone that repository from [https://github.com/sdsc/sandbox-cluster-guide](https://github.com/sdsc/sandbox-cluster-guide)
-     1. Type `git clone https://github.com/sdsc/sandbox-cluster-guide.git`  into the terminal.
+     1. Type `git clone --depth=1 https://github.com/sdsc/sandbox-cluster-guide.git`  into the
+        terminal. (The `--depth=1` option tells `git` to only pull down the latest version
+        to save time and space.)
      1. Change into the sandbox-cluster-guide folder:  `cd sandbox-cluster-guide`
      1. Change into the config folder: `cd config`
      1. Deploy configuration (`./deploy.sh <node number>`)
      ```
-     pi@raspberry:~ $ git clone https://github.com/sdsc/sandbox-cluster-guide.git
+     pi@raspberry:~ $ git clone --depth=1 https://github.com/sdsc/sandbox-cluster-guide.git
      Cloning into 'sandbox-cluster-guide'...
      remote: Counting objects: 452, done.
      remote: Compressing objects: 100% (43/43), done.
