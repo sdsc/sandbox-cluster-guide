@@ -1,7 +1,7 @@
 # Running Parallel Programs
 
 ```
-pi@pinode-0:~ $ cd /sandbox-cluster-guide/examples
+pi@pinode-0:~ $ cd sandbox-cluster-guide/examples
 pi@pinode-0:examples $ mpirun -np 2 ./hello.py
 ```
 
