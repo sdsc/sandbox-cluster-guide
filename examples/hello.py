@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import socket
-import time
 from mpi4py import MPI
 
 # Communicator object
