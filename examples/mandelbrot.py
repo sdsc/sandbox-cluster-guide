@@ -33,21 +33,23 @@ def get_points(column, columns, row, rows, width, height):
 	finishy = (height/rows)*(row+1)
 	return startx, starty, finishx, finishy
 
-#Detects if in Mandelbrot Set. Change limit higher for more accuracy
+#Detects if in Mandelbrot Set to accuracy of 255 cycles
 def in_set(x, y, width, height):
 	x = (x-.5*width)/(.25*width)
 	y = (y-.5*height)/(.25*width)
 	c = complex(x,y)
 	z = 0
 	on = 0
-	limit = 100
+	limit = 300
 	while on < limit:
 		z = z*z +c
 		if math.fabs(z.real) > 2:
-			on = limit + 1
+			on += limit
 		on += 1
 	if on == limit:
-		return True
+		return True, 255
+	else:
+		return True, int((on - limit)/(limit*1.0)*255)
 
 
 #Goes through all points from given square(in form of x, y, coordinates)
@@ -55,8 +57,9 @@ def go_through_points(startx, starty, finishx, finishy, width, height):
 	list = []	
 	for x in range(startx, finishx):
 		for y in range(starty, finishy):
-			if in_set(x,y,width,height):
-				list.append((x,y))
+			prop = in_set(x,y,width,height)
+			if prop[0]:
+				list.append((x,y,prop[1]))
 	return list
 
 start_time = time.time()
@@ -85,9 +88,9 @@ startx, starty, finishx, finishy = get_points(column, columns, row, rows, width,
 
 # assume that tasks are ordered by compute node
 if rank < comm.Get_size()/2:
-        os.environ['SDL_VIDEO_WINDOW_POS'] = str(startx) + "," + str(starty)
+		os.environ['SDL_VIDEO_WINDOW_POS'] = str(startx) + "," + str(starty)
 else:
-        os.environ['SDL_VIDEO_WINDOW_POS'] = str(startx - disp_info.current_w) + "," + str(starty)
+		os.environ['SDL_VIDEO_WINDOW_POS'] = str(startx - disp_info.current_w) + "," + str(starty)
 
 
 list_of_points = go_through_points(startx, starty, finishx, finishy, width, height)
@@ -98,7 +101,7 @@ for point in list_of_points:
 	y = point[1]-starty
 	x = point[0]-startx
 	try:
-		im.putpixel((x,y), (0, 255, 100))
+		im.putpixel((x,y), (point[2], point[2], point[2]))
 	except IndexError:
 		im.putpixel((0,0), (255,255,255))
 		print("ERROR:| IndexError | rank: %s | point: %s |"%(rank, str(point)))
