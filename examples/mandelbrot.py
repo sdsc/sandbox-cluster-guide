@@ -3,8 +3,7 @@
 """
 Run this using
   mpirun -np <tasks> ./mandelbrot.py <rows> <columns>
-where <tasks> = <rows> * <columns>
-and <tasks> is even
+where <tasks> <= <rows> * <columns>
 """
 
 import os
@@ -24,7 +23,6 @@ def get_rowcolumn(rank, rows, columns):
 				return y, x
 			else:
 				count += 1	
-
 #Gets all points in window from column, row coordinates
 def get_points(column, columns, row, rows, width, height):
 	startx = (width/columns)*column
@@ -74,23 +72,24 @@ columns = int(sys.argv[2])
 
 pygame.display.init()
 disp_info = pygame.display.Info()
-width = disp_info.current_w*2  #total width of all screens
-height = disp_info.current_h   #total height of all screens
+width = disp_info.current_w*columns  #total width of all screens
+height = disp_info.current_h*rows   #total height of all screens
 
 #Checks if there are enough windows/screens/processors for given rows and columns(squares)
-if comm.Get_size() != rows*columns:
-	print("ERROR:| incorrect settings | programs:%s | squares:%s |\r\nHint: programs should = squares, squares = rows*columns"%(comm.Get_size(), rows*columns))
-	exit()
+#if comm.Get_size() != rows*columns:
+#	print("ERROR:| incorrect settings | programs:%s | squares:%s |\r\nHint: programs should = squares, squares = rows*columns"%(comm.Get_size(), rows*columns))
+#	exit()
 
 #Main stud
+rowcol = rows*columns
+if rows*columns < comm.Get_size():
+	columns, rows = 1*columns , comm.Get_size()/columns
 row , column = get_rowcolumn(rank, rows, columns)
 startx, starty, finishx, finishy = get_points(column, columns, row, rows, width, height)
 
 # assume that tasks are ordered by compute node
-if rank < comm.Get_size()/2:
-		os.environ['SDL_VIDEO_WINDOW_POS'] = str(startx) + "," + str(starty)
-else:
-		os.environ['SDL_VIDEO_WINDOW_POS'] = str(startx - disp_info.current_w) + "," + str(starty)
+a, b = get_rowcolumn(rank/(rowcol*comm.Get_size()), int(sys.argv[1]), int(sys.argv[2]))
+os.environ['SDL_VIDEO_WINDOW_POS'] = str(startx - disp_info.current_w*a) + "," + str(starty - disp_info.current_w*b)
 
 
 list_of_points = go_through_points(startx, starty, finishx, finishy, width, height)
