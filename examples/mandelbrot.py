@@ -3,7 +3,7 @@
 """
 Run this using
   mpirun -np <tasks> ./mandelbrot.py <rows> <columns>
-where <tasks> <= <rows> * <columns>
+where rows*columns <= tasks
 """
 
 import os
@@ -84,7 +84,11 @@ height = disp_info.current_h*rows   #total height of all screens
 rowcol = rows*columns
 if rows*columns < comm.Get_size():
 	columns, rows = 1*columns , comm.Get_size()/columns
-row , column = get_rowcolumn(rank, rows, columns)
+try:
+	row , column = get_rowcolumn(rank, rows, columns)
+except TypeError:
+	print "TypeError \r\nrank: " + str(rank)
+	comm.Barrier()
 startx, starty, finishx, finishy = get_points(column, columns, row, rows, width, height)
 
 # assume that tasks are ordered by compute node
