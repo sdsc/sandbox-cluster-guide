@@ -33,14 +33,14 @@ def get_points(column, columns, row, rows, width, height):
 	finishy = (height/rows)*(row+1)
 	return startx, starty, finishx, finishy
 
-#Detects if in Mandelbrot Set to accuracy of 255 cycles
+#Detects if in Mandelbrot Set. Change Limit higher for more accuracy
 def in_set(x, y, width, height):
 	x = (x-.5*width)/(.25*width)
 	y = (y-.5*height)/(.25*width)
 	c = complex(x,y)
 	z = 0
 	on = 0
-	limit = 300
+	limit = 100
 	while on < limit:
 		z = z*z +c
 		if math.fabs(z.real) > 2:
