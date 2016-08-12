@@ -93,7 +93,7 @@ startx, starty, finishx, finishy = get_points(column, columns, row, rows, width,
 
 # assume that tasks are ordered by compute node
 a, b = get_rowcolumn(rank/(rowcol*comm.Get_size()), int(sys.argv[1]), int(sys.argv[2]))
-os.environ['SDL_VIDEO_WINDOW_POS'] = str(startx - disp_info.current_w*a) + "," + str(starty - disp_info.current_w*b)
+os.environ['SDL_VIDEO_WINDOW_POS'] = str(startx - disp_info.current_w*column) + "," + str(starty - disp_info.current_h*b)
 
 
 list_of_points = go_through_points(startx, starty, finishx, finishy, width, height)

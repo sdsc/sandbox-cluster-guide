@@ -22,8 +22,8 @@ rows = int(sys.argv[1])
 columns = int(sys.argv[2])
 pygame.display.init()
 disp_info = pygame.display.Info()
-width = disp_info.current_w  #total width of all screens
-height = disp_info.current_h   #total height of all screens
+width = disp_info.current_w*columns  #total width of all screens
+height = disp_info.current_h*rows   #total height of all screens
 pygame.init()
 screen = pygame.display.set_mode((width/columns, height/rows), pygame.NOFRAME)
 pygame.display.set_caption('GravitySim%s'%(comm.Get_rank()))
@@ -110,9 +110,9 @@ def in_entire(ball, width, height):
 		return True
 #######################################################
 if rank < comm.Get_size()/2:
-		os.environ['SDL_VIDEO_WINDOW_POS'] = str(startx) + "," + str(starty)
+		os.environ['SDL_VIDEO_WINDOW_POS'] = '0,0'#str(startx) + "," + str(starty)
 else:
-		os.environ['SDL_VIDEO_WINDOW_POS'] = str(startx - disp_info.current_w) + "," + str(starty)
+		os.environ['SDL_VIDEO_WINDOW_POS'] = '0,0'#str(startx - disp_info.current_w) + "," + str(starty)
 
 #################   Main Loop   #######################3
 list_of_balls = []
